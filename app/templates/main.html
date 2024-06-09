@@ -1,0 +1,147 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home - Farmácia Online{% endblock %}
+
+{% block content %}
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.header {
+    background-color: #143C8D;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+.header__title {
+    margin: 0;
+    color: #143C8D;
+}
+
+.nav {
+    margin: 1em 0;
+}
+
+.nav__list {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.nav__item {
+    display: inline;
+    margin: 0 10px;
+}
+
+.nav__link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav__link:hover {
+    text-decoration: underline;
+}
+
+.main {
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.footer {
+    background-color: #143C8D;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.products {
+    padding: 20px;
+}
+
+.products__title {
+    text-align: center;
+    color: #333;
+}
+
+.products__list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.products__item {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 200px;
+    text-align: center;
+}
+
+.products__name {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #143C8D;
+}
+
+.products__description {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.products__price {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #143C8D;
+}
+
+.btn-add {
+    background: #143C8D;
+    color: #fff;
+    margin-top: 10px;
+    height: 40px;
+    width: 180px;
+    border-radius: 3px;
+}
+
+</style>
+
+<section class="products">
+    <h2 class="products__title">Nossos Produtos</h2>
+    <ul class="products__list">
+
+        {% for prod in context %}
+
+        <li class="products__item">
+            <img src="{{ prod.image.url }}" width="150px" height="150px">
+            <h3 class="products__name">{{prod.name}}</h3>
+            <p class="products__description">{{prod.description}} 1</p>
+            <p class="products__price">R$ {{prod.price}}</p>
+            <input type="number" value="{{prod.quantity}}">
+            <input type="submit" class="btn-add" value="Adicionar ao carrinho">
+
+        </li>
+
+        {% endfor %}
+    </ul>
+</section>
+
+{% endblock %}

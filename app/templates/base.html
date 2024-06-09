@@ -2,13 +2,155 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Base template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Farmácia Online{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        .header {
+            background-color: #143C8D;
+            color: white;
+            padding: 1em;
+            text-align: center;
+        }
+
+        .header__title {
+            margin: 0;
+            color: #143C8D;
+        }
+
+        .nav {
+            margin: 1em 0;
+        }
+
+        .nav__list {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        .nav__item {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .nav__link {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .nav__link:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .footer {
+            background-color: #143C8D;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            position: static;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .products {
+            padding: 20px;
+        }
+
+        .products__title {
+            text-align: center;
+            color: #333;
+        }
+
+        .products__list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .products__item {
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            max-width: 200px;
+            text-align: center;
+        }
+
+        .products__name {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+
+        .products__description {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .products__price {
+            font-weight: bold;
+            margin-top: 10px;
+            color: #143C8D;
+        }
+
+        .box-search {
+            width: 600px;
+            height: 30px;
+            border-radius: 3px;
+            box-shadow: none;
+        }
+
+        .btn-search {
+            height: 35px;
+            border-radius: 3px;
+        }
+
+    </style>
 </head>
 <body>
-    <main>
-        {% block content%}
-        {% endblock %}
-    </main>
+<header class="header">
+    <h1 class="header__title">Bem-vindo à Farmácia Online</h1>
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item"><a class="nav__link" href="#">Home</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Produtos</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Sobre Nós</a></li>
+            <li class="nav__item"><a class="nav__link" href="#">Contato</a></li>
+        </ul>
+    </nav>
+
+    <form method="GET" action="{% url 'prod_list' %}">
+        <input class="box-search" type="text" name="search" placeholder="O que você precisa hoje?">
+        <button type="submit" class="btn-search">Buscar</button>
+    </form>
+</header>
+<main class="main">
+    {% block content %}
+    {% endblock %}
+</main>
 
 </body>
 </html>
